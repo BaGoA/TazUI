@@ -17,8 +17,13 @@
 */
 
 mod application;
+mod ncurses_ui;
 mod ui;
 
+use application::Application;
+use ncurses_ui::NCursesTui;
+
 fn main() {
-    println!("Hello, world!");
+    let mut app = Application::<NCursesTui>::new();
+    app.run();
 }
