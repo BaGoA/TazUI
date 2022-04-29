@@ -16,9 +16,12 @@
    along with this program.  If not, see <https://www.gnu.org/licenses/>.
 */
 
-mod application;
-mod ui;
-
-fn main() {
-    println!("Hello, world!");
+/// Trait to define user interface functionnalities
+/// that Taz application needs.
+pub trait UI {
+    fn init() -> Self;
+    fn get_expression(&self, history: &Vec<String>) -> String;
+    fn display_string(&self, string: &String);
+    fn display_value(&self, result: f64);
+    fn end(&mut self);
 }
