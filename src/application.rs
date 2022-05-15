@@ -51,6 +51,10 @@ impl<UIApp: UI> Application<UIApp> {
                 break;
             }
 
+            if expression.len() == 0 {
+                continue;
+            }
+
             match taz::evaluate(&expression) {
                 Ok(result) => self.ui.display_value(result),
                 Err(message) => self.ui.display_string(&message),
