@@ -40,6 +40,11 @@ impl<UIApp: UI> Application<UIApp> {
 
     /// Run the application
     pub fn run(&mut self) {
+        let header: String = 
+            String::from("TazUI Copyright (C) 2022 Bastian Gonzalez Acevedo\nThis program comes with ABSOLUTELY NO WARRANTY; for details type `show w'.\nThis is free software, and you are welcome to redistribute it under certain conditions; type `show c' for details.\n\n");
+
+        self.ui.display_string(&header);
+
         let start_expression: String = String::from(">>> ");
 
         loop {
