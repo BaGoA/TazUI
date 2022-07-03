@@ -46,6 +46,11 @@ impl<UIApp: UI> Application<UIApp> {
         self.ui.display_string(&header);
 
         let start_expression: String = String::from(">>> ");
+        
+        let evaluate_fun = |expression : &String| -> Result<f64, String> {
+            let infix_expression : taz::InfixExpression = taz::InfixExpression::new(expression)?;
+            return infix_expression.to_postfix()?.evaluate();
+        };
 
         loop {
             self.ui.display_string(&start_expression);
@@ -60,7 +65,7 @@ impl<UIApp: UI> Application<UIApp> {
                 continue;
             }
 
-            match taz::evaluate(&expression) {
+            match evaluate_fun(&expression) {
                 Ok(result) => self.ui.display_value(result),
                 Err(message) => self.ui.display_string(&message),
             }
